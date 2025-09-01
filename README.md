@@ -1,4 +1,4 @@
-# Mi Proyecto FastAPI
+# Mattilda prueba técnica
 
 Una API REST desarrollada con FastAPI, containerizada con Docker y orquestada con Docker Compose.
 
