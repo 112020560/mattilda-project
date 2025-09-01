@@ -2,6 +2,7 @@ from pydantic import BaseModel, ConfigDict
 from typing import List
 from decimal import Decimal
 from datetime import date
+from app.api.schemas.invoice import InvoiceResponse
 
 class StudentAccountStatement(BaseModel):
     student_id: int

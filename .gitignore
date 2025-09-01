@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# C extensions
+*.pyd
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+eggs/
+*.egg-info/
+.installed.cfg
+*.manifest
+*.spec
+
+# Virtual environment
+.env/
+venv/
+env/
+.venv/
+.direnv/
+
+# FastAPI / Uvicorn
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.vscode/
+
+# IDE files
+.idea/
+.DS_Store
+
+# Alembic migrations
+alembic/versions/

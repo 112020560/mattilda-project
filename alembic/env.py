@@ -75,7 +75,6 @@ def do_run_migrations(connection: Connection) -> None:
     with context.begin_transaction():
         context.run_migrations()
 
-
 async def run_async_migrations() -> None:
     """In this scenario we need to create an Engine
     and associate a connection with the context.
@@ -83,13 +82,31 @@ async def run_async_migrations() -> None:
     """
     # Configurar el engine async
     configuration = config.get_section(config.config_ini_section)
-    configuration["sqlalchemy.url"] = get_database_url()
+    
+    # --- CAMBIO AQUÍ ---
+    # Usar la URL asíncrona directamente para el motor asíncrono
+    async_db_url = settings.DATABASE_URL_ASYNC
     
     connectable = async_engine_from_config(
         configuration,
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
+        url=async_db_url, # <--- Se le pasa la URL asíncrona
     )
+# async def run_async_migrations() -> None:
+#     """In this scenario we need to create an Engine
+#     and associate a connection with the context.
+
+#     """
+#     # Configurar el engine async
+#     configuration = config.get_section(config.config_ini_section)
+#     configuration["sqlalchemy.url"] = get_database_url()
+    
+#     connectable = async_engine_from_config(
+#         configuration,
+#         prefix="sqlalchemy.",
+#         poolclass=pool.NullPool,
+#     )
 
     async with connectable.connect() as connection:
         await connection.run_sync(do_run_migrations)
