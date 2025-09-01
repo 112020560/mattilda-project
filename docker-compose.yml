@@ -6,8 +6,8 @@ services:
     image: postgres:15-alpine
     environment:
       POSTGRES_DB: mattilda_db
-      POSTGRES_USER: mattilda_user
-      POSTGRES_PASSWORD: mattilda_pass
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: Abc..123
     ports:
       - "5432:5432"
     volumes:
@@ -16,7 +16,7 @@ services:
     networks:
       - mattilda-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U mattilda_user -d mattilda_db"]
+      test: ["CMD-SHELL", "pg_isready -U app_user -d mattilda_db"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -27,8 +27,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgresql://mattilda_user:mattilda_pass@postgres:5432/mattilda_db
-      - DATABASE_URL_ASYNC=postgresql+asyncpg://mattilda_user:mattilda_pass@postgres:5432/mattilda_db
+      - DATABASE_URL=postgresql://app_user:Abc..123@postgres:5432/mattilda_db
+      - DATABASE_URL_ASYNC=postgresql+asyncpg://app_user:Abc..123@postgres:5432/mattilda_db
       - DEBUG=true
     depends_on:
       postgres:

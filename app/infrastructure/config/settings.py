@@ -4,8 +4,8 @@ import os
 
 class Settings(BaseSettings):
     # Database
-    DATABASE_URL: str = "postgresql://mattilda_user:mattilda_pass@localhost:5432/mattilda_db"
-    DATABASE_URL_ASYNC: str = "postgresql+asyncpg://mattilda_user:mattilda_pass@localhost:5432/mattilda_db"
+    DATABASE_URL: str = "postgresql://app_user:Abc..123@localhost:5432/mattilda_db"
+    DATABASE_URL_ASYNC: str = "postgresql+asyncpg://app_user:Abc..123@localhost:5432/mattilda_db"
     
     # App
     APP_NAME: str = "Mattilda API"

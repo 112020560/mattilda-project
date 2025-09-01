@@ -1,0 +1,66 @@
+
+# commands.md - Comandos útiles para migraciones
+# Comandos de Alembic para el proyecto Mattilda
+
+## Inicializar Alembic (solo la primera vez)
+```bash
+alembic init alembic
+```
+
+## Crear primera migración
+```bash
+alembic revision --autogenerate -m "Initial migration - create all tables"
+```
+
+## Crear migración automática (detecta cambios en modelos)
+```bash
+alembic revision --autogenerate -m "Descripción del cambio"
+```
+
+## Aplicar migraciones
+```bash
+# Aplicar todas las migraciones pendientes
+alembic upgrade head
+
+# Aplicar hasta una revisión específica
+alembic upgrade <revision_id>
+
+# Aplicar solo la siguiente migración
+alembic upgrade +1
+```
+
+## Revertir migraciones
+```bash
+# Revertir la última migración
+alembic downgrade -1
+
+# Revertir hasta una revisión específica
+alembic downgrade <revision_id>
+
+# Revertir todas las migraciones
+alembic downgrade base
+```
+
+## Ver estado actual
+```bash
+# Ver la revisión actual
+alembic current
+
+# Ver historial de migraciones
+alembic history
+
+# Ver migraciones pendientes
+alembic show head
+```
+
+## Con Docker Compose
+```bash
+# Crear migración dentro del contenedor
+docker-compose exec api alembic revision --autogenerate -m "Migration message"
+
+# Aplicar migraciones
+docker-compose exec api alembic upgrade head
+
+# Ver estado
+docker-compose exec api alembic current
+```
