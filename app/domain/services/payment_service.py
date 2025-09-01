@@ -7,6 +7,8 @@ from app.domain.repositories.payment_repository import PaymentRepositoryInterfac
 from app.domain.repositories.invoice_repository import InvoiceRepositoryInterface
 from app.api.schemas.payment import PaymentCreate, PaymentUpdate
 
+# home/falpizar/Documentos/fuentes/mattilda-project/app/domain/repositories/payment_repository.py
+
 class PaymentService:
     def __init__(self, 
                  payment_repo: PaymentRepositoryInterface,
