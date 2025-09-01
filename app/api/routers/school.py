@@ -2,6 +2,7 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.dependencies.school_dependency import get_school_service
 from app.infrastructure.database.database import get_db
 from app.domain.services.school_service import SchoolService
 from app.infrastructure.repositories.school_repository import SQLAlchemySchoolRepository
@@ -9,9 +10,9 @@ from app.api.schemas.school import SchoolCreate, SchoolUpdate, SchoolResponse
 
 router = APIRouter(prefix="/schools", tags=["schools"])
 
-async def get_school_service(db: AsyncSession = Depends(get_db)) -> SchoolService:
-    school_repo = SQLAlchemySchoolRepository(db)
-    return SchoolService(school_repo)
+# async def get_school_service(db: AsyncSession = Depends(get_db)) -> SchoolService:
+#     school_repo = SQLAlchemySchoolRepository(db)
+#     return SchoolService(school_repo)
 
 @router.post("/", response_model=SchoolResponse, status_code=201)
 async def create_school(

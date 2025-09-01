@@ -2,6 +2,7 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.dependencies.student_dependency import get_student_service
 from app.infrastructure.database.database import get_db
 from app.domain.services.student_service import StudentService
 from app.infrastructure.repositories.student_repository import SQLAlchemyStudentRepository
@@ -10,10 +11,10 @@ from app.api.schemas.student import StudentCreate, StudentUpdate, StudentRespons
 
 router = APIRouter(prefix="/students", tags=["students"])
 
-async def get_student_service(db: AsyncSession = Depends(get_db)) -> StudentService:
-    student_repo = SQLAlchemyStudentRepository(db)
-    school_repo = SQLAlchemySchoolRepository(db)
-    return StudentService(student_repo, school_repo)
+# async def get_student_service(db: AsyncSession = Depends(get_db)) -> StudentService:
+#     student_repo = SQLAlchemyStudentRepository(db)
+#     school_repo = SQLAlchemySchoolRepository(db)
+#     return StudentService(student_repo, school_repo)
 
 @router.post("/", response_model=StudentResponse, status_code=201)
 async def create_student(

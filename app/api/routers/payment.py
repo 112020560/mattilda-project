@@ -2,6 +2,7 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.dependencies.payment_dependency import get_payment_service
 from app.infrastructure.database.database import get_db
 from app.domain.services.payment_service import PaymentService
 from app.infrastructure.repositories.payment_repository import SQLAlchemyPaymentRepository
@@ -10,10 +11,10 @@ from app.api.schemas.payment import PaymentCreate, PaymentUpdate, PaymentRespons
 
 router = APIRouter(prefix="/payments", tags=["payments"])
 
-async def get_payment_service(db: AsyncSession = Depends(get_db)) -> PaymentService:
-    payment_repo = SQLAlchemyPaymentRepository(db)
-    invoice_repo = SQLAlchemyInvoiceRepository(db)
-    return PaymentService(payment_repo, invoice_repo)
+# async def get_payment_service(db: AsyncSession = Depends(get_db)) -> PaymentService:
+#     payment_repo = SQLAlchemyPaymentRepository(db)
+#     invoice_repo = SQLAlchemyInvoiceRepository(db)
+#     return PaymentService(payment_repo, invoice_repo)
 
 @router.post("/", response_model=PaymentResponse, status_code=201)
 async def create_payment(

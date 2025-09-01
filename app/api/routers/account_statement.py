@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.routers.invoice import get_invoice_service
 from app.infrastructure.database.database import get_db
 from app.domain.services.invoice_service import InvoiceService
 from app.infrastructure.repositories.invoice_repository import SQLAlchemyInvoiceRepository
@@ -8,10 +9,10 @@ from app.infrastructure.repositories.student_repository import SQLAlchemyStudent
 
 router = APIRouter(prefix="/account-statements", tags=["account-statements"])
 
-async def get_invoice_service(db: AsyncSession = Depends(get_db)) -> InvoiceService:
-    invoice_repo = SQLAlchemyInvoiceRepository(db)
-    student_repo = SQLAlchemyStudentRepository(db)
-    return InvoiceService(invoice_repo, student_repo)
+# async def get_invoice_service(db: AsyncSession = Depends(get_db)) -> InvoiceService:
+#     invoice_repo = SQLAlchemyInvoiceRepository(db)
+#     student_repo = SQLAlchemyStudentRepository(db)
+#     return InvoiceService(invoice_repo, student_repo)
 
 @router.get("/student/{student_id}")
 async def get_student_account_statement(
